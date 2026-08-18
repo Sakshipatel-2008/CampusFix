@@ -11,7 +11,7 @@
 
 // The name of the currently "logged in" student.
 // (There is no real login system — this is a frontend-only demo.)
-const CURRENT_STUDENT = "Sakshi";
+const CURRENT_STUDENT = "Engineer";
 
 // The key we use to save/read issues from localStorage.
 const STORAGE_KEY = "campusfix_issues";
@@ -23,9 +23,7 @@ let issues = [];
 // Keeps track of which status filter is active on the "My Issues" page.
 let activeFilter = "all";
 
-/* ----------------------------------------------------------
-   2. LOCAL STORAGE FUNCTIONS
----------------------------------------------------------- */
+/*local storage function */
 
 // Reads issues from localStorage. If nothing is saved yet,
 // it falls back to a starter set of sample issues.
@@ -154,9 +152,7 @@ function getSampleIssues() {
   ];
 }
 
-/* ----------------------------------------------------------
-   3. UTILITY FUNCTIONS
----------------------------------------------------------- */
+/* utility function*/
 
 // Creates a unique id for a new issue using the current timestamp.
 function generateId() {

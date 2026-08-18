@@ -93,7 +93,7 @@ textarea:focus-visible,
   stroke-linejoin: round;
 }
 
-//*sidebar*/
+/*sidebar*/
 .sidebar {
   width: var(--sidebar-width);
   min-width: var(--sidebar-width);
