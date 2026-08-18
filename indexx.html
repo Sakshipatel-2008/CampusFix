@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusFix — Report. Track. Resolve.</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================
+       SIDEBAR
+  ============================================= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="logo">
+        <svg class="leaf-icon logo-leaf" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 20c8-1 14-7 15-15-8 1-14 7-15 15Z" />
+          <path d="M5 19c3-4 7-8 13-14" />
+        </svg>
+        <h1 class="logo-text">Campus<span class="accent">Fix</span></h1>
+      </div>
+      <p class="tagline">Fix it today, for a better tomorrow.</p>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-view="home" type="button">
+        <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 11.5 12 4l8 7.5" />
+          <path d="M6 10v9a1 1 0 0 0 1 1h3v-6h4v6h3a1 1 0 0 0 1-1v-9" />
+        </svg>
+        <span>Home</span>
+      </button>
+
+      <button class="nav-item" id="navReportBtn" type="button">
+        <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="3" width="16" height="18" rx="2" />
+          <path d="M9 12h6" />
+          <path d="M12 9v6" />
+        </svg>
+        <span>Report an Issue</span>
+      </button>
+
+      <button class="nav-item" data-view="my-issues" type="button">
+        <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="3" width="16" height="18" rx="2" />
+          <path d="M8 8h8" />
+          <path d="M8 12h8" />
+          <path d="M8 16h5" />
+        </svg>
+        <span>My Issues</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="user-profile">
+        <div class="avatar" aria-hidden="true">S</div>
+        <div class="user-info">
+          <p class="user-name" id="studentNameLabel">Sakshi</p>
+          <p class="user-meta">3rd Year, CSE</p>
+        </div>
+      </div>
+      <button class="signout-btn" id="signOutBtn" type="button">Sign Out</button>
+      <p class="footer-note">&copy; 2026 CampusFix</p>
+    </div>
+  </aside>
+
+  <!-- Mobile menu toggle -->
+  <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+  </button>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- Main content -->
+  <main class="main-content">
+
+    <!-- home view-->
+    <section class="view active" id="view-home">
+
+      <header class="dashboard-header">
+        <p class="greeting-small">Welcome back,</p>
+        <h2 class="greeting-large">
+          <span id="studentNameDisplay">Sakshi</span>
+          <svg class="leaf-icon heading-leaf" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 20c8-1 14-7 15-15-8 1-14 7-15 15Z" />
+            <path d="M5 19c3-4 7-8 13-14" />
+          </svg>
+        </h2>
+        <p class="greeting-sub">Let's make our campus better, one fix at a time.</p>
+      </header>
+
+      <div class="action-row">
+        <div class="search-bar">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+          <label for="homeSearchInput" class="visually-hidden">Search issues, locations or keywords</label>
+          <input type="text" id="homeSearchInput" placeholder="Search issues, locations or keywords..." autocomplete="off" />
+        </div>
+        <button class="btn-primary" id="openReportModalBtn" type="button">
+          <span class="btn-plus">+</span> Report an Issue
+        </button>
+      </div>
+
+      <!-- Statistics -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon--rust">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M9 8h6M9 12h6M9 16h3" /></svg>
+          </div>
+          <div>
+            <p class="stat-number" id="statTotal">0</p>
+            <p class="stat-label">Total Issues</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon--amber">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12M6 21h12" /><path d="M7 3c0 5 5 6 5 9s-5 4-5 9M17 3c0 5-5 6-5 9s5 4 5 9" /></svg>
+          </div>
+          <div>
+            <p class="stat-number" id="statPending">0</p>
+            <p class="stat-label">Pending</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon--olive">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4 10-10" /></svg>
+          </div>
+          <div>
+            <p class="stat-number" id="statResolved">0</p>
+            <p class="stat-label">Resolved</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Issues + side column -->
+      <div class="dashboard-grid">
+        <section class="glass-card recent-issues-card">
+          <div class="card-heading">
+            <h3>Recent Issues</h3>
+          </div>
+          <div class="issue-list" id="recentIssuesList"></div>
+          <p class="empty-message" id="recentIssuesEmpty" hidden>No issues found.</p>
+        </section>
+
+        <div class="side-column">
+          <section class="glass-card pulse-card">
+            <div class="card-heading">
+              <h3>Campus Pulse</h3>
+            </div>
+            <p class="pulse-question">What's the biggest concern on campus?</p>
+            <div class="pulse-list" id="campusPulseList"></div>
+          </section>
+
+          <section class="glass-card quote-card">
+            <svg class="leaf-icon quote-leaf" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 20c8-1 14-7 15-15-8 1-14 7-15 15Z" />
+              <path d="M5 19c3-4 7-8 13-14" />
+            </svg>
+            <p class="quote-text">&ldquo;Every report makes a difference.&rdquo;</p>
+            <p class="quote-sub">Together for a cleaner, smarter and happier campus.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- MY ISSUES VIEW ---------- -->
+    <section class="view" id="view-my-issues">
+      <header class="dashboard-header">
+        <p class="greeting-small">Your reports</p>
+        <h2 class="greeting-large-sm">My Issues</h2>
+        <p class="greeting-sub">Everything you've reported, in one place.</p>
+      </header>
+
+      <div class="action-row">
+        <div class="search-bar">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+          <label for="myIssuesSearchInput" class="visually-hidden">Search your issues</label>
+          <input type="text" id="myIssuesSearchInput" placeholder="Search your issues..." autocomplete="off" />
+        </div>
+        <button class="btn-primary" id="openReportModalBtnSecondary" type="button">
+          <span class="btn-plus">+</span> Report an Issue
+        </button>
+      </div>
+
+      <div class="filter-row" id="filterRow" role="group" aria-label="Filter issues by status">
+        <button class="filter-chip active" data-filter="all" type="button">All</button>
+        <button class="filter-chip" data-filter="Pending" type="button">Pending</button>
+        <button class="filter-chip" data-filter="In Progress" type="button">In Progress</button>
+        <button class="filter-chip" data-filter="Resolved" type="button">Resolved</button>
+      </div>
+
+      <section class="glass-card recent-issues-card my-issues-card">
+        <div class="issue-list" id="myIssuesList"></div>
+        <p class="empty-message" id="myIssuesEmpty" hidden>No issues found.</p>
+      </section>
+    </section>
+  </main>
+
+  <!-- ============================================
+       REPORT AN ISSUE MODAL
+  ============================================= -->
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle">Report an Issue</h3>
+        <button class="modal-close" id="closeModalBtn" type="button" aria-label="Close form">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+
+      <form id="reportForm" novalidate>
+        <div class="form-group">
+          <label for="issueTitle">Issue Title</label>
+          <input type="text" id="issueTitle" name="issueTitle" placeholder="e.g. Broken chair in Room 101" required />
+          <span class="field-error" id="issueTitleError"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="issueCategory">Category</label>
+            <select id="issueCategory" name="issueCategory" required>
+              <option value="" disabled selected>Select category</option>
+              <option value="Internet">Internet</option>
+              <option value="Classroom">Classroom</option>
+              <option value="Electricity">Electricity</option>
+              <option value="Cleanliness">Cleanliness</option>
+              <option value="Water">Water</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="issuePriority">Priority</label>
+            <select id="issuePriority" name="issuePriority" required>
+              <option value="" disabled selected>Select priority</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="issueLocation">Location</label>
+          <input type="text" id="issueLocation" name="issueLocation" placeholder="e.g. Academic Block, Room 204" required />
+          <span class="field-error" id="issueLocationError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="issueDescription">Description</label>
+          <textarea id="issueDescription" name="issueDescription" rows="3" placeholder="Briefly describe the issue (optional)"></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary btn-full">Submit Issue</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================
+       TOAST NOTIFICATION
+  ============================================= -->
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4 10-10" /></svg>
+    <span id="toastMessage">Issue reported successfully</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
